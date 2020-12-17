@@ -1,0 +1,699 @@
+{
+	"info": {
+		"_postman_id": "b68f0f47-5ef7-4933-a458-06a996fe9da3",
+		"name": "swapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Root",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0e889839-f1f3-4e1a-b1fe-368014f4acde",
+						"exec": [
+							"//Check response status\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//Check reponse string\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"        pm.response.to.have.status(\"OK\");\r",
+							"    });\r",
+							"//Check reponse properties \r",
+							"pm.test(\"The response has all expected properties\", () => {\r",
+							"    //parse the response json and test all properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"people\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"planets\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"films\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"species\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"vehicles\");    \r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"starships\");\r",
+							"});\r",
+							"\r",
+							"//Check reponse data type\r",
+							"pm.test(\"All properties are in expected type\", () => {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.people).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.planets).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.films).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.species).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.vehicles).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.starships).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"//check if response data value matches datasheet\r",
+							"pm.test(\"Attributes value check\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.people).to.eql(pm.iterationData.get(\"root_people\"));\r",
+							"    pm.expect(jsonData.planets).to.eql(pm.iterationData.get(\"root_planets\"));\r",
+							"    pm.expect(jsonData.films).to.eql(pm.iterationData.get(\"root_films\"));\r",
+							"    pm.expect(jsonData.species).to.eql(pm.iterationData.get(\"root_species\"));\r",
+							"    pm.expect(jsonData.vehicles).to.eql(pm.iterationData.get(\"root_vehicles\"));\r",
+							"    pm.expect(jsonData.starships).to.eql(pm.iterationData.get(\"root_starships\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}",
+					"host": [
+						"{{baseUrl}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "People",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f0b46195-ef37-46c5-9ee6-65cd89c561c7",
+						"exec": [
+							"//Check response status\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//Check reponse string\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"        pm.response.to.have.status(\"OK\");\r",
+							"    });\r",
+							"//Check reponse properties \r",
+							"pm.test(\"The response has all expected properties\", () => {\r",
+							"    //parse the response json and test all properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"name\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"height\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"mass\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"hair_color\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"skin_color\");    \r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"eye_color\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"birth_year\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"gender\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"homeworld\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"films\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"species\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"vehicles\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"starships\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"created\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"edited\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"url\");\r",
+							"});\r",
+							"\r",
+							"//Check reponse data type\r",
+							"pm.test(\"All properties are in expected type\", () => {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.name).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.height).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.mass).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.hair_color).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.skin_color).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.eye_color).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.birth_year).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.gender).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.homeworld).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.films).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"//check response data value\r",
+							"pm.test(\"Attributes value check\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"people_name\"));\r",
+							"    pm.expect(jsonData.height).to.eql((pm.iterationData.get(\"people_height\")).toString());\r",
+							"    pm.expect(jsonData.mass).to.eql((pm.iterationData.get(\"people_mass\")).toString());\r",
+							"    pm.expect(jsonData.hair_color).to.eql(pm.iterationData.get(\"people_hair_color\"));\r",
+							"    pm.expect(jsonData.skin_color).to.eql(pm.iterationData.get(\"people_skin_color\"));\r",
+							"    pm.expect(jsonData.eye_color).to.eql(pm.iterationData.get(\"people_eye_color\"));\r",
+							"    pm.expect(jsonData.birth_year).to.eql(pm.iterationData.get(\"people_birth_year\"));\r",
+							"    pm.expect(jsonData.gender).to.eql(pm.iterationData.get(\"people_gender\"));\r",
+							"    pm.expect(jsonData.homeworld).to.eql(pm.iterationData.get(\"people_homeworld\"));    \r",
+							"    pm.expect(jsonData.films).to.contain(pm.iterationData.get(\"people_films_001\"));\r",
+							"    pm.expect(jsonData.vehicles).to.contain(pm.iterationData.get(\"people_vehicles_001\"));\r",
+							"    pm.expect(jsonData.starships).to.contain(pm.iterationData.get(\"people_starships_001\"));\r",
+							"    pm.expect(jsonData.created).to.eql(pm.iterationData.get(\"people_created\")); \r",
+							"    pm.expect(jsonData.edited).to.eql(pm.iterationData.get(\"people_edited\")); \r",
+							"    pm.expect(jsonData.url).to.eql(pm.iterationData.get(\"people_url\")); \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://swapi.dev/api/people/{{people_id}}",
+					"protocol": "http",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"people",
+						"{{people_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Films",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "54bfb14b-220a-4c2b-b79a-78a3eadf0676",
+						"exec": [
+							"//Check response status\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//Check reponse string\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"        pm.response.to.have.status(\"OK\");\r",
+							"    });\r",
+							"//Check reponse properties \r",
+							"pm.test(\"The response has all expected properties\", () => {\r",
+							"    //parse the response json and test all properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"title\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"episode_id\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"opening_crawl\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"director\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"producer\");    \r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"release_date\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"species\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"starships\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"vehicles\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"characters\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"planets\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"url\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"created\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"edited\");\r",
+							"});\r",
+							"\r",
+							"//Check reponse data type\r",
+							"pm.test(\"All properties are in expected type\", () => {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.title).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.episode_id).to.be.a(\"number\");\r",
+							"    pm.expect(responseJson.opening_crawl).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.director).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.producer).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.release_date).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.characters).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.planets).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.starships).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.vehicles).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.species).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.created).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.edited).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.url).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"//check if response data value matches datasheet\r",
+							"pm.test(\"Attributes value check\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.title).to.eql(pm.iterationData.get(\"film_title\"));\r",
+							"    pm.expect(jsonData.episode_id).to.eql(pm.iterationData.get(\"film_episode_id\"));\r",
+							"    pm.expect(jsonData.director).to.eql(pm.iterationData.get(\"film_director\"));\r",
+							"    pm.expect(jsonData.producer).to.eql(pm.iterationData.get(\"film_producer\"));\r",
+							"    pm.expect(jsonData.planets).to.contain(pm.iterationData.get(\"film_planets_001\"));\r",
+							"    pm.expect(jsonData.starships).to.contain(pm.iterationData.get(\"film_starships_001\"));\r",
+							"    pm.expect(jsonData.vehicles).to.contain(pm.iterationData.get(\"film_vehicles_001\"));\r",
+							"    pm.expect(jsonData.species).to.contain(pm.iterationData.get(\"film_species_001\"));\r",
+							"    pm.expect(jsonData.created).to.eql(pm.iterationData.get(\"film_created\"));\r",
+							"    pm.expect(jsonData.edited).to.eql(pm.iterationData.get(\"film_edited\"));\r",
+							"    pm.expect(jsonData.url).to.eql(pm.iterationData.get(\"film_url\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://swapi.dev/api/films/{{film_id}}",
+					"protocol": "http",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"films",
+						"{{film_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "starships",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bcf01380-ac29-4dc0-8281-11fd859578bd",
+						"exec": [
+							"//Check response status\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//Check reponse string\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"        pm.response.to.have.status(\"OK\");\r",
+							"    });\r",
+							"//Check reponse properties \r",
+							"pm.test(\"The response has all expected properties\", () => {\r",
+							"    //parse the response json and test all properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"name\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"model\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"manufacturer\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"cost_in_credits\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"length\");    \r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"max_atmosphering_speed\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"crew\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"passengers\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"cargo_capacity\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"consumables\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"hyperdrive_rating\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"MGLT\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"starship_class\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"pilots\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"films\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"created\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"edited\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"url\");\r",
+							"});\r",
+							"\r",
+							"//Check reponse data type\r",
+							"pm.test(\"All properties are in expected type\", () => {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.name).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.model).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.manufacturer).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.cost_in_credits).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.length).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.max_atmosphering_speed).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.crew).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.passengers).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.cargo_capacity).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.consumables).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.hyperdrive_rating).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.MGLT).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.starship_class).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.pilots).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.films).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.created).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.edited).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.url).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"//check if response data value matches datasheet\r",
+							"pm.test(\"Attributes value check\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"starship_name\"));\r",
+							"    pm.expect(jsonData.model).to.eql(pm.iterationData.get(\"starship_model\"));\r",
+							"    pm.expect(jsonData.manufacturer).to.eql(pm.iterationData.get(\"starship_manufacturer\"));\r",
+							"    pm.expect(jsonData.length).to.eql(pm.iterationData.get(\"starship_length\").toString());\r",
+							"    pm.expect(jsonData.max_atmosphering_speed).to.eql(pm.iterationData.get(\"starship_max_atmosphering_speed\").toString());\r",
+							"    pm.expect(jsonData.crew).to.eql(pm.iterationData.get(\"starship_crew\").toString());\r",
+							"    pm.expect(jsonData.passengers).to.eql(pm.iterationData.get(\"starship_passengers\").toString());\r",
+							"    pm.expect(jsonData.cargo_capacity).to.eql(pm.iterationData.get(\"starship_cargo_capacity\").toString());\r",
+							"    pm.expect(jsonData.consumables).to.eql(pm.iterationData.get(\"starship_consumables\"));\r",
+							"    //pm.expect(jsonData.hyperdrive_rating).to.eql(pm.iterationData.get(\"starship_hyperdrive_rating\"));\r",
+							"    pm.expect(jsonData.films).to.contain(pm.iterationData.get(\"starship_films_001\"));\r",
+							"    pm.expect(jsonData.created).to.eql(pm.iterationData.get(\"starship_created\"));\r",
+							"    pm.expect(jsonData.edited).to.eql(pm.iterationData.get(\"starship_edited\"));\r",
+							"    pm.expect(jsonData.url).to.eql(pm.iterationData.get(\"starship_url\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://swapi.dev/api/starships/{{starship_id}}",
+					"protocol": "http",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"starships",
+						"{{starship_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vehicles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6e94e329-fbe7-45d8-8cdf-599878a33bac",
+						"exec": [
+							"//Check response status\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//Check reponse string\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"        pm.response.to.have.status(\"OK\");\r",
+							"    });\r",
+							"//Check reponse properties \r",
+							"pm.test(\"The response has all expected properties\", () => {\r",
+							"    //parse the response json and test all properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"name\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"model\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"vehicle_class\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"manufacturer\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"length\");    \r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"cost_in_credits\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"crew\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"passengers\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"max_atmosphering_speed\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"cargo_capacity\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"consumables\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"films\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"pilots\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"url\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"created\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"edited\");\r",
+							"});\r",
+							"\r",
+							"//Check reponse data type\r",
+							"pm.test(\"All properties are in expected type\", () => {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.name).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.model).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.manufacturer).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.cost_in_credits).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.length).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.max_atmosphering_speed).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.crew).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.passengers).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.cargo_capacity).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.consumables).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.vehicle_class).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.pilots).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.films).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.created).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.edited).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.url).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"//check if response data value matches datasheet\r",
+							"pm.test(\"Attributes value check\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"vehicle_name\"));\r",
+							"    pm.expect(jsonData.model).to.eql(pm.iterationData.get(\"vehicle_model\"));\r",
+							"    pm.expect(jsonData.manufacturer).to.eql(pm.iterationData.get(\"vehicle_manufacturer\"));\r",
+							"    pm.expect(jsonData.cost_in_credits).to.eql(pm.iterationData.get(\"vehicle_cost_in_credits\").toString());\r",
+							"     //pm.expect(jsonData.length).to.eql(parseInt(pm.iterationData.get(\"vehicle_length\")));\r",
+							"    pm.expect(jsonData.max_atmosphering_speed).to.eql(pm.iterationData.get(\"vehicle_max_atmosphering_speed\").toString());\r",
+							"    pm.expect(jsonData.crew).to.eql(pm.iterationData.get(\"vehicle_crew\").toString());\r",
+							"    pm.expect(jsonData.passengers).to.eql(pm.iterationData.get(\"vehicle_passengers\").toString());\r",
+							"    pm.expect(jsonData.cargo_capacity).to.eql(pm.iterationData.get(\"vehicle_cargo_capacity\").toString());\r",
+							"    pm.expect(jsonData.consumables).to.eql(pm.iterationData.get(\"vehicle_consumables\"));\r",
+							"    pm.expect(jsonData.vehicle_class).to.eql(pm.iterationData.get(\"vehicle_vehicle_class\"));\r",
+							"    //pm.expect(jsonData.films).to.contain(pm.iterationData.get(\"vehicle_films_001\"));\r",
+							"    pm.expect(jsonData.created).to.eql(pm.iterationData.get(\"vehicle_created\"));\r",
+							"    pm.expect(jsonData.edited).to.eql(pm.iterationData.get(\"vehicle_edited\"));\r",
+							"    pm.expect(jsonData.url).to.eql(pm.iterationData.get(\"vehicle_url\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://swapi.dev/api/vehicles/{{vehicle_id}}",
+					"protocol": "http",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"vehicles",
+						"{{vehicle_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "species",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0278a483-f71c-41a1-a909-845f84ef9bce",
+						"exec": [
+							"//Check response status\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//Check reponse string\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"        pm.response.to.have.status(\"OK\");\r",
+							"    });\r",
+							"//Check reponse properties \r",
+							"pm.test(\"The response has all expected properties\", () => {\r",
+							"    //parse the response json and test all properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"name\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"classification\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"designation\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"average_height\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"skin_colors\");    \r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"hair_colors\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"eye_colors\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"average_lifespan\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"homeworld\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"language\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"people\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"films\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"url\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"created\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"edited\");\r",
+							"});\r",
+							"\r",
+							"//Check reponse data type\r",
+							"pm.test(\"All properties are in expected type\", () => {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.name).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.classification).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.designation).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.average_height).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.skin_colors).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.hair_colors).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.eye_colors).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.average_lifespan).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.homeworld).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.language).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.people).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.films).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.created).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.edited).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.url).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"//check if response data value matches datasheet\r",
+							"pm.test(\"Attributes value check\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"specie_name\"));\r",
+							"    pm.expect(jsonData.classification).to.eql(pm.iterationData.get(\"specie_classification\"));\r",
+							"    pm.expect(jsonData.designation).to.eql(pm.iterationData.get(\"specie_designation\"));\r",
+							"    pm.expect(jsonData.average_height).to.eql(pm.iterationData.get(\"specie_average_height\").toString());\r",
+							"    pm.expect(jsonData.skin_colors).to.eql(pm.iterationData.get(\"specie_skin_colors\"));\r",
+							"    pm.expect(jsonData.hair_colors).to.eql(pm.iterationData.get(\"specie_hair_colors\"));\r",
+							"    pm.expect(jsonData.eye_colors).to.eql(pm.iterationData.get(\"specie_eye_colors\"));\r",
+							"    pm.expect(jsonData.average_lifespan).to.eql(pm.iterationData.get(\"specie_average_lifespan\").toString());\r",
+							"    pm.expect(jsonData.homeworld).to.eql(pm.iterationData.get(\"specie_homeworld\"));\r",
+							"    pm.expect(jsonData.language).to.eql(pm.iterationData.get(\"specie_language\"));\r",
+							"    pm.expect(jsonData.people).to.contain(pm.iterationData.get(\"specie_people_001\"));\r",
+							"    //pm.expect(jsonData.films).to.contain(pm.iterationData.get(\"specie_films_001\"));\r",
+							"    pm.expect(jsonData.created).to.eql(pm.iterationData.get(\"specie_created\"));\r",
+							"    pm.expect(jsonData.edited).to.eql(pm.iterationData.get(\"specie_edited\"));\r",
+							"    pm.expect(jsonData.url).to.eql(pm.iterationData.get(\"specie_url\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://swapi.dev/api/species/{{specie_id}}",
+					"protocol": "http",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"species",
+						"{{specie_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "planets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c3b9ca92-dab3-4076-aaf2-ef07fc454f28",
+						"exec": [
+							"//Check response status\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//Check reponse string\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"        pm.response.to.have.status(\"OK\");\r",
+							"    });\r",
+							"//Check reponse properties \r",
+							"pm.test(\"The response has all expected properties\", () => {\r",
+							"    //parse the response json and test all properties\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"name\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"rotation_period\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"orbital_period\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"diameter\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"climate\");    \r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"gravity\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"terrain\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"surface_water\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"population\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"residents\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"films\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"created\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"edited\");\r",
+							"    pm.expect(responseJson).to.haveOwnProperty(\"url\");\r",
+							"});\r",
+							"\r",
+							"//Check reponse data type\r",
+							"pm.test(\"All properties are in expected type\", () => {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson).to.be.an(\"object\");\r",
+							"    pm.expect(responseJson.name).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.rotation_period).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.orbital_period).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.diameter).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.climate).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.gravity).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.terrain).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.surface_water).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.population).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.residents).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.films).to.be.an(\"array\");\r",
+							"    pm.expect(responseJson.created).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.edited).to.be.a(\"string\");\r",
+							"    pm.expect(responseJson.url).to.be.a(\"string\");\r",
+							"});\r",
+							"\r",
+							"//check if response data value matches datasheet\r",
+							"pm.test(\"Attributes value check\",function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"planet_name\"));\r",
+							"    pm.expect(jsonData.rotation_period).to.eql(pm.iterationData.get(\"planet_rotation_period\").toString());\r",
+							"    pm.expect(jsonData.orbital_period).to.eql(pm.iterationData.get(\"planet_orbital_period\").toString());\r",
+							"    pm.expect(jsonData.diameter).to.eql(pm.iterationData.get(\"planet_diameter\").toString());\r",
+							"    pm.expect(jsonData.climate).to.eql(pm.iterationData.get(\"planet_climate\"));\r",
+							"    pm.expect(jsonData.gravity).to.eql(pm.iterationData.get(\"planet_gravity\"));\r",
+							"    pm.expect(jsonData.terrain).to.eql(pm.iterationData.get(\"planet_terrain\"));\r",
+							"    pm.expect(jsonData.surface_water).to.eql(pm.iterationData.get(\"planet_surface_water\").toString());\r",
+							"    pm.expect(jsonData.population).to.eql(pm.iterationData.get(\"planet_population\").toString());\r",
+							"    pm.expect(jsonData.residents).to.contain(pm.iterationData.get(\"planet_residents_001\"));\r",
+							"    //pm.expect(jsonData.films).to.contain(pm.iterationData.get(\"specie_films_001\"));\r",
+							"    pm.expect(jsonData.created).to.eql(pm.iterationData.get(\"planet_created\"));\r",
+							"    pm.expect(jsonData.edited).to.eql(pm.iterationData.get(\"planet_edited\"));\r",
+							"    pm.expect(jsonData.url).to.eql(pm.iterationData.get(\"planet_url\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://swapi.dev/api/planets/{{planet_id}}",
+					"protocol": "http",
+					"host": [
+						"swapi",
+						"dev"
+					],
+					"path": [
+						"api",
+						"planets",
+						"{{planet_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
